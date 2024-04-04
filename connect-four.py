@@ -1,23 +1,27 @@
 
-def main():
-    board = initialiseBoard()
-    displayBoard(board)
-    
-def initialiseBoard():
-    board = []
-    for _ in range(6):
-        row = []
-        for _ in range(7):
-            row.append('-')
-        board.append(row)
-    return board
-    
-def displayBoard(board):
-    for row in board:
-        for cell in row:
-            print(cell, end=' ')
-        print()
-    print()
+board = []
 
-if __name__ == "__main__":
-    main()
+def initialiseBoard():
+    for i in range(7):
+        row = ["-","-","-","-","-","-","-"]
+        board.append(row)
+
+def displayBoard():
+    for i in board:
+        print('', end="|")
+        for _ in i:
+            print(_, end="|")
+        print()
+
+initialiseBoard()
+displayBoard()
+playerCount = 0
+while True:
+    token = X
+    if playerCount % 2 == 0:
+        token = O
+    playerCount += 1
+
+
+
+    
