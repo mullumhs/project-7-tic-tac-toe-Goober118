@@ -1,5 +1,11 @@
+# Tic Tac Toe game
+# Torin Forsyth
+# 10/05/2024
+
 def main():
 
+    print("-- Tic Tac Toe --")
+    print("")
     # Define playerCount and board
     playerCount = 1
     board = initialiseBoard()
@@ -9,7 +15,8 @@ def main():
     
     while True:
         
-        playerCount = tokenCheck(board, playerCount)
+        token = tokenCheck(playerCount)
+        playerCount = getInput(board, playerCount, token)
         displayBoard(board)
         
         if winCheck(board):
@@ -62,7 +69,7 @@ def displayBoard(board):
             print(_, end="|")
         print()
 
-def tokenCheck(board, playerCount):
+def tokenCheck(playerCount):
     
     # Define the starting token
     token = ' X '
@@ -75,6 +82,9 @@ def tokenCheck(board, playerCount):
         print("Player X's turn")
     else:
         print("Player O's turn")
+    return token
+    
+def getInput(board, playerCount, token):    
     
     while True:
         try:
@@ -89,10 +99,10 @@ def tokenCheck(board, playerCount):
                 break
         except ValueError:
             print("Invalid Input! Input must be a number.")
-        
+   
+    
     while True:
         try:
-            # Ask for collumn input
             choice_col = int(input("Input a collumn from 1-3: "))
             # Make input correspond with board structure
             choice_col -= 1
@@ -148,5 +158,5 @@ def winCheck(board):
     if board[0][0] == board[1][1] == board[2][2] != ' - ':
         return True
 
-
+# Run the game
 main()
