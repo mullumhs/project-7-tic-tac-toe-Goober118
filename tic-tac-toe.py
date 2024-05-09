@@ -1,9 +1,12 @@
 def main():
 
+    #Define playerCount and board
     playerCount = 1
     board = initialiseBoard()
+    
     #Print the board
     displayBoard(board)
+    
     while True:
         playerCount = tokenCheck(board, playerCount)
         displayBoard(board)
@@ -16,7 +19,7 @@ def main():
             break
         #Check for a draw
         if playerCount == 10:
-            print("Draw!")
+            print("Draw! You both suck.")
             break
     while True:
         #Display end menu when player wins or draw occurs
@@ -28,7 +31,7 @@ def main():
             #End main function
             break
         else:
-            print("Invalid input")
+            print("Invalid input! Input must be 1 or 2.")
 
 def initialiseBoard():
     
@@ -60,10 +63,29 @@ def tokenCheck(board, playerCount):
         print("Player X's turn")
     else:
         print("Player O's turn")
-    choice_row = int(input("Input a row from 1-3: "))
-    choice_row -= 1
-    choice_col = int(input("Input a collumn from 1-3: "))
-    choice_col -= 1
+    
+    while True:
+        try:
+            choice_row = int(input("Input a row from 1-3: "))
+            choice_row -= 1
+            if choice_row != 0 and choice_row != 1 and choice_row != 2:
+                print("Invalid input! Input must be a number between 1 and 3.")
+            else:
+                break
+        except ValueError:
+            print("Invalid Input! Input must be a number.")
+        
+    while True:
+        try:
+            choice_col = int(input("Input a collumn from 1-3: "))
+            choice_col -= 1
+            if choice_col != 0 and choice_col != 1 and choice_col != 2:
+                print("Invalid Input! Input must be a number between 1 and 3.")
+            else:
+                break
+        except ValueError:
+            print("Invalid Input! Input must be a number.")
+
     if board[choice_row][choice_col] == ' - ':
         board[choice_row][choice_col] = token
         playerCount += 1
